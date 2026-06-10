@@ -20,6 +20,46 @@ LEDC 可以输出指定频率和占空比的方波，
 
 ---
 
+## 常用概念
+
+### LEDC
+
+LEDC 是 ESP-IDF 中常用的 PWM 输出驱动。
+
+它通过定时器产生计数基准，
+再由通道把 PWM 波形输出到指定 GPIO。
+
+### Timer
+
+LEDC 定时器决定 PWM 的频率和占空比精度。
+
+多个通道可以共用同一个定时器，
+但它们会共享相同的频率和精度。
+
+### Channel
+
+LEDC 通道决定 PWM 输出到哪个 GPIO。
+
+一个通道需要绑定一个已经配置好的 LEDC 定时器。
+
+### Duty
+
+Duty 表示占空比计数值。
+
+它不是百分比本身，
+而是和 `duty_resolution` 对应的原始计数值。
+
+### Resolution
+
+`duty_resolution` 表示占空比精度。
+
+精度越高，
+占空比可调级数越多；
+但在同一时钟源下，
+可支持的最高 PWM 频率会下降。
+
+---
+
 ## 1. 配置 LEDC 定时器
 
 LEDC 定时器决定 PWM 的频率和占空比精度。
@@ -281,3 +321,30 @@ void pwm_set_duty_percent(uint32_t percent)
 
 4. `ledc_update_duty`
    更新占空比输出。
+
+---
+
+## 后续扩展复习点
+
+1. 频率和精度换算
+   进一步整理 `freq_hz`、
+   `duty_resolution`、
+   LEDC 时钟源之间的约束关系。
+
+2. 高速模式和低速模式
+   复习不同 ESP32 系列芯片中
+   `LEDC_HIGH_SPEED_MODE` 和
+   `LEDC_LOW_SPEED_MODE` 的支持差异。
+
+3. 渐变控制
+   学习 `ledc_fade_func_install`、
+   `ledc_set_fade_with_time`、
+   `ledc_fade_start` 的使用方式。
+
+4. 输出反转
+   理解 `flags.output_invert`
+   在低电平有效驱动场景中的作用。
+
+5. 多通道同步
+   复习多路 PWM 共用定时器时，
+   频率一致、占空比独立的配置方式。

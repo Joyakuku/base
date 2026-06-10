@@ -26,6 +26,53 @@ SysTimer 这里主要指 ESP-IDF 中的 `esp_timer`
 
 ---
 
+## 常用概念
+
+### Handle
+
+`esp_timer_handle_t` 表示一个 `esp_timer` 实例。
+
+创建、启动、停止和删除定时器，
+都需要通过这个句柄指定目标定时器。
+
+### Callback
+
+`callback` 是定时器到期后执行的函数。
+
+默认情况下，
+回调运行在 ESP Timer task 中。
+
+### Dispatch Method
+
+`dispatch_method` 决定回调如何被调度。
+
+常用值：
+
+- `ESP_TIMER_TASK`
+  由 ESP Timer task 执行回调。
+
+- `ESP_TIMER_ISR`
+  在中断上下文中执行回调。
+
+普通项目优先使用 `ESP_TIMER_TASK`。
+
+### Once / Periodic
+
+`esp_timer_start_once` 用于一次性触发。
+
+`esp_timer_start_periodic` 用于周期性触发。
+
+同一个定时器句柄启动后，
+应先停止再改变启动方式。
+
+### Time Unit
+
+`esp_timer` 的启动参数单位是 `us`。
+
+例如 `100000` 表示 `100 ms`。
+
+---
+
 ## 1. 定义定时器句柄
 
 ```c
@@ -320,3 +367,22 @@ void systimer_init(void)
 
 5. `esp_timer_delete`
    删除定时器。
+
+---
+
+## 后续扩展复习点
+
+1. SysTimer 和 GPTimer 的区别
+   对比软件高精度定时器与硬件通用定时器的适用边界。
+
+2. `ESP_TIMER_TASK` 和 `ESP_TIMER_ISR`
+   复习两种回调调度方式的延迟、限制和使用条件。
+
+3. `skip_unhandled_events`
+   理解周期性事件积压时是否跳过未处理事件。
+
+4. 低功耗和睡眠
+   学习 light sleep / deep sleep 对 `esp_timer` 的影响。
+
+5. 定时器回调转任务
+   整理通过队列、信号量、事件组把工作转交给 task 的写法。

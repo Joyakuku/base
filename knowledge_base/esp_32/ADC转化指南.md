@@ -799,3 +799,33 @@ ADC 输入电压不能超过芯片允许范围。
 
 8. `adc_oneshot_read`
    执行一次 ADC 采样并读取原始值。
+
+---
+
+## 后续扩展复习点
+
+1. ADC 校准驱动
+   继续学习 `adc_cali_create_scheme_line_fitting`、
+   `adc_cali_raw_to_voltage`，
+   以及不同芯片 eFuse 校准数据的差异。
+
+2. 衰减档位和输入范围
+   复习 `ADC_ATTEN_DB_0`、
+   `ADC_ATTEN_DB_2_5`、
+   `ADC_ATTEN_DB_6`、
+   `ADC_ATTEN_DB_12` 在不同 ESP32 系列上的实际范围。
+
+3. ADC1 和 ADC2 资源冲突
+   深入理解 Wi-Fi 使用时为什么优先选择 ADC1。
+
+4. 连续采样数据格式
+   复习 `ADC_DIGI_OUTPUT_FORMAT_TYPE1`、
+   `ADC_DIGI_OUTPUT_FORMAT_TYPE2`、
+   `SOC_ADC_DIGI_RESULT_BYTES` 的关系。
+
+5. 采样频率和多通道分配
+   整理 `sample_freq_hz` 在多通道 pattern 中如何分摊。
+
+6. 输入阻抗和前端电路
+   学习分压电阻、滤波电容、
+   传感器输出阻抗对 ADC 读数稳定性的影响。

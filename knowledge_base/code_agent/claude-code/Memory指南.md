@@ -8,6 +8,51 @@
 
 ---
 
+## 工作流程
+
+配置 memory 时，
+推荐按下面顺序推进：
+
+1. 确认规则适合长期复用。
+2. 判断应该放在项目级、目录级还是个人级。
+3. 用短句写清稳定规则和验证标准。
+4. 避免写入一次性背景和易变化信息。
+5. 在真实任务中观察是否被正确遵守。
+6. 定期清理过期规则。
+
+---
+
+## 常用概念
+
+### Project Memory
+
+项目级 memory 通常放在项目根目录的 `CLAUDE.md`。
+
+它适合记录项目结构、开发规则、
+测试要求和提交约定。
+
+### Personal Memory
+
+个人级 memory 通常放在 `~/.claude/CLAUDE.md`。
+
+它适合记录个人偏好、
+常用沟通方式和稳定工作习惯。
+
+### Directory Memory
+
+目录级 memory 放在子目录中的 `CLAUDE.md`。
+
+它适合 monorepo 或大项目中的局部规则。
+
+### Import
+
+`@README.md` 这类引用可以把其它文档纳入 memory。
+
+适合引用相对稳定的项目说明，
+不适合引用经常变动的大文档。
+
+---
+
 ## 适用场景
 
 出现以下任一情况，
@@ -472,3 +517,45 @@ project/
   `/projects/analytics`。
 - Mobile App: `/projects/mobile`。
 - Admin Panel: `/projects/admin`。
+
+---
+
+## 速查
+
+1. `CLAUDE.md`
+   项目级 memory 的常见文件名。
+
+2. `/init`
+   初始化项目 memory。
+
+3. `/memory`
+   查看或编辑 memory。
+
+4. `# your rule`
+   快速写入一条规则。
+
+5. `@README.md`
+   在 memory 中引用其它文档。
+
+6. `~/.claude/CLAUDE.md`
+   个人级 memory 的常见位置。
+
+---
+
+## 后续扩展复习点
+
+1. Memory 分层策略
+   继续整理项目级、目录级、个人级 memory 的边界。
+
+2. Memory 和 Skill 的区别
+   复习什么时候写长期规则，
+   什么时候沉淀成可执行工作流。
+
+3. Memory 维护周期
+   建立定期清理过期规则的检查清单。
+
+4. 团队协作规范
+   整理多人项目中哪些规则适合进入共享 memory。
+
+5. Windows 项目约定
+   补充 shell、路径、编码、换行符等本地环境规则。
